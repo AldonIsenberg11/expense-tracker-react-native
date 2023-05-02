@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import ManageExpense from './screens/ManageExpense';
@@ -63,7 +63,13 @@ export default function App() {
     <>
       <StatusBar style='auto' />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='ExpensesOverview'>
+        <Stack.Navigator 
+          initialRouteName='ExpensesOverview'
+          screenOptions={{
+            headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+            headerTintColor: 'white',
+          }}
+        >
           <Stack.Screen
             name='ExpensesOverview' 
             component={ExpensesOverview}
@@ -72,6 +78,9 @@ export default function App() {
           <Stack.Screen
             name='ManageExpense'
             component={ManageExpense}
+            options={{ 
+              presentation: 'modal',
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
